@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SchoolSystem.ViewModels.RequestTORAndDiplomaAdminViewModel>
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Request List
+        </div>
+        <div class="card-body">
+            @if (Model == null || !Model.Any())
+            {
+                <p>No requests available.</p>
+            }
+            else
+            {
+                <table id="datatablesSimple" class="display">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Request Type</th>
+                            <th>Reason</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var request in Model)
+                        {
+                            <tr>
+                                <td>@request.StudentId</td>
+                                <td>@request.StudentName</td>
+                                <td>@request.RequestType</td>
+                                <td>@request.Reason</td>
+                                <td>@request.Status</td>
+                                <td>
+                                    @if (request.Status == "Approved")
+                                    {
+                                        <span class="badge bg-success">Approved</span>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex gap-2">
+                                            <form asp-action="ApproveRequest" asp-route-requestId="@request.Id" method="post">
+                                                <button type="submit" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-check"></i> Approve
+                                                </button>
+                                            </form>
+                                            <form asp-action="RejectRequest" asp-route-requestId="@request.Id" method="post">
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-times"></i> Reject
+                                                </button>
+                                            </form>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#datatablesSimple').DataTable();
+    });
+</script>

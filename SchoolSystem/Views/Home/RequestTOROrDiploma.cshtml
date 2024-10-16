@@ -1,0 +1,145 @@
+﻿@model SchoolSystem.ViewModels.RequestTORAndDiplomaViewModel
+@{
+    ViewData["Title"] = "Request TOR or Diploma";
+}
+
+@if (ViewData.ModelState.ErrorCount > 0)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<style>
+    .account-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 0;
+        height: 100vh;
+    }
+
+    .account-box {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        max-width: 500px;
+        width: 100%;
+        opacity: .9;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .btn-primary {
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #23527c;
+            border-color: #1d4e7a;
+        }
+</style>
+
+<div class="account-container">
+    <div class="account-box">
+        <h2 class="text-center mb-4">Request Form</h2>
+        <form id="requestForm" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="StudentId" class="form-label"></label>
+                        <input asp-for="StudentId" class="form-control" />
+                        <span asp-validation-for="StudentId" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="StudentName" class="form-label"></label>
+                        <input asp-for="StudentName" class="form-control" />
+                        <span asp-validation-for="StudentName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label asp-for="StudentEmail" class="form-label"></label>
+                <input asp-for="StudentEmail" class="form-control" />
+                <span asp-validation-for="StudentEmail" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="RequestType" class="form-label"></label>
+                <select asp-for="RequestType" class="form-control">
+                    <option value="TOR">Transcript of Records</option>
+                    <option value="Diploma">Diploma</option>
+                </select>
+                <span asp-validation-for="RequestType" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Reason" class=" form-label"></label>
+                <textarea asp-for="Reason" class="form-control"></textarea>
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <div class="col">
+                <input type="submit" value="Send Request" class="btn btn-primary w-100 p-2" />
+            </div>
+            <div class="text-center mt-2">
+                <a asp-controller="Home" asp-action="Index" class="text-primary text-decoration-none mt-2">Go Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $("#requestForm").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/Home/RequestTOROrDiploma",
+            data: $("#requestForm").serialize(),
+            dataType: "json",
+            success: function (response) {
+                if (response.success) {
+                    // Show a SweetAlert confirmation message
+                    Swal.fire({
+                        title: 'Request Sent Successfully!',
+                        text: response.message,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    // Show a SweetAlert error message
+                    Swal.fire({
+                        title: 'Request Failed!',
+                        text: response.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        });
+    });
+</script>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

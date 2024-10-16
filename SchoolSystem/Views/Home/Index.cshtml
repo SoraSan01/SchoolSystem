@@ -1,0 +1,274 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+
+    .hero {
+        background-image: url('@Url.Content("~/img/schoolpic.jpg")'); /* Background image */
+        background-position: center;
+        background-size: cover; /* Cover the entire area */
+        background-repeat: no-repeat; /* Prevent repeating the image */
+        min-height: 100vh; /* Ensure it covers full height */
+        height: 100vh;
+        margin-top: 20px;
+        padding-top: 80px;
+        color: white; /* Change text color to white */
+        text-align: center; /* Center text in hero */
+        display: flex; /* Make hero a flex container */
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically */
+    }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: white; /* Change text color to white */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow effect */
+        }
+
+        .hero p {
+            font-size: 20px; /* Adjusted paragraph font size */
+            color: white; /* Change text color to white */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add shadow effect */
+        }
+
+    .mission-vision {
+        background-color: #f5f5f5;
+        padding: 50px 0;
+    }
+
+        .mission-vision h2 {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .mission-vision .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .mission-vision .col-md-6 {
+            text-align: justify;
+        }
+
+    .features, .testimonials {
+        background-color: #f5f5f5;
+        padding: 50px 0;
+    }
+
+        .features .card, .testimonials .card {
+            margin-bottom: 20px;
+            transition: transform 0.3s; /* Smooth hover effect */
+            border: none; /* Remove border from cards */
+            border-radius: 10px; /* Add rounded corners to cards */
+            box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.15); /* Add shadow to cards */
+        }
+
+            .features .card:hover, .testimonials .card:hover {
+                transform: scale(1.05); /* Scale effect on hover */
+            }
+
+            .features .card img, .testimonials .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .features .card h2, .testimonials .card h2 {
+                font-size: 22px; /* Adjusted card heading font size */
+            }
+
+            .features .card p, .testimonials .card p {
+                font-size: 14px; /* Adjusted card paragraph font size */
+            }
+
+    /* Contact Us Styles */
+    .contact-us {
+        background-color: #f8f9fa; /* Light background for contact section */
+        padding: 50px 0;
+    }
+
+        .contact-us h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .contact-us form {
+            max-width: 600px;
+            margin: 0 auto; /* Center the form */
+        }
+
+        .contact-us .form-group {
+            margin-bottom: 20px;
+        }
+
+    .card {
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.15); /* Add shadow */
+    }
+</style>
+
+
+<div class="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="~/img/logo.png" width="200px" height="auto" />
+                <h1>Eulogio M. Garcia Integrated School</h1>
+                <p>A place where learning meets innovation</p>
+                <button class="btn btn-primary btn-lg">
+                    <a class="nav-link" asp-area="Student" asp-controller="Enroll" asp-action="Index">Enroll</a>
+                </button>
+                <button class="btn btn-primary btn-lg">
+                    <a class="nav-link" asp-controller="Home" asp-action="RequestTOROrDiploma">Request</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mission-vision" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h3>About:</h3>
+                <p>
+                    At Eulogio M. Garcia Integrated School, we are dedicated to fostering a nurturing and inclusive environment where students can thrive academically, socially, and emotionally. Founded in 2010, our school has grown into a vibrant community committed to educational excellence and holistic development.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Mission:</h3>
+                <p>
+                    Our mission is to provide a safe, inclusive, and nurturing environment where all students are empowered to achieve their full potential. We strive to foster a love of learning, critical thinking, and creativity while instilling core values of respect, integrity, and responsibility. Through collaboration with families and the community, we are dedicated to preparing our students for lifelong success in an ever-changing world.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h3>Vision:</h3>
+                <p>
+                    We envision a school community where every student is inspired to learn, grow, and lead. Our goal is to cultivate innovative thinkers and compassionate leaders who will contribute positively to society. We aspire to be a model of educational excellence, committed to equity and inclusion, where diverse perspectives are celebrated, and every individual is valued.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <h3>History:</h3>
+                <p>
+                    Established in 2010, Eulogio M. Garcia Integrated School has been serving the community for over a decade. Our commitment to quality education and holistic development has allowed us to adapt and grow in response to the changing needs of our students and society.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features" id="features">
+    <div class="container">
+        <h2 class="text-center">Features</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Feature 1" />
+                    <div class="card-body">
+                        <h2 class="card-title">Experienced Faculty</h2>
+                        <p class="card-text">
+                            Our faculty members are highly qualified and passionate about education.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Feature 2" />
+                    <div class="card-body">
+                        <h2 class="card-title">State-of-the-art Facilities</h2>
+                        <p class="card-text">
+                            We provide a conducive environment for learning with modern facilities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Feature 3" />
+                    <div class="card-body">
+                        <h2 class="card-title">Extracurricular Activities</h2>
+                        <p class="card-text">
+                            We offer various extracurricular programs to foster holistic development.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="testimonials" id="testimonials">
+    <div class="container">
+        <h2 class="text-center">Testimonials</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Testimonial 1" />
+                    <div class="card-body">
+                        <h2 class="card-title">Parent Testimonial</h2>
+                        <p class="card-text">
+                            "Eulogio M. Garcia Integrated School has provided my child with an incredible educational experience. The teachers are dedicated and genuinely care about their students' success."
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Testimonial 2" />
+                    <div class="card-body">
+                        <h2 class="card-title">Student Testimonial</h2>
+                        <p class="card-text">
+                            "I love studying here! The environment is friendly, and I have made great friends while learning so much."
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="https://via.placeholder.com/300x200" alt="Testimonial 3" />
+                    <div class="card-body">
+                        <h2 class="card-title">Alumni Testimonial</h2>
+                        <p class="card-text">
+                            "The education I received at Eulogio M. Garcia Integrated School prepared me for my future. I'm grateful for the experiences and opportunities I had here."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-us" id="contact">
+    <div class="card border-primary mb-3" style="max-width: auto; max-height: auto;">
+        <div class="card-header">Contact Us</div>
+        <div class="card-body">
+            <h4 class="card-title">Location</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Smooth scroll animation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            target.scrollIntoView({
+                behavior: 'smooth', // Smooth scroll
+                block: 'start' // Scroll to the top of the target
+            });
+        });
+    });
+</script>
